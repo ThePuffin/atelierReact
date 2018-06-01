@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Recommence from "./Recommence";
+import Historique from "./Historique";
 
 class Jeu extends Component {
   constructor(props) {
@@ -18,12 +20,10 @@ class Jeu extends Component {
         { type: "btn btn-warning", value: 1000, text: "hard" }
       ]
     };
-    this.recommence = this.recommence.bind(this);
-    this.stateWin = this.stateWin.bind(this);
+
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeValeur = this.changeValeur.bind(this);
-    this.soumissionChiffre = this.soumissionChiffre.bind(this);
   }
 
   nombreAleatoire(max) {
@@ -97,24 +97,11 @@ class Jeu extends Component {
     }
   }
 
-  stateWin() {
-    console.log(this.state.win);
-  }
-
-  recommence() {
-    window.location.reload();
-  }
-
-  soumissionChiffre(e){
-e.preventDefault()
-  }
-
   render() {
-    // let icon = [battery - empty, battery - quarter, battery - three - quarters];
-    // let difference = this.state.valeurEntree - this.state.nbrDevine;
-
-    return <div>
-        {this.state.win === false ? <div>
+    return (
+      <div>
+        {this.state.win === false ? (
+          <div>
             {this.state.bouton.map(btn => (
               <button
                 className={btn.type}
@@ -124,24 +111,57 @@ e.preventDefault()
                 {btn.text}
               </button>
             ))}
-            <form className="row" onSubmit={this.handleSubmit} >
-              <input type="number" class="form-control game-display offset-5 col-2" placeholder="enter number" value={this.state.valeurEntree} onChange={this.changeValeur} />
-            </form>
-            <br />
-            <button type="submit" disabled={this.state.disabled} className="btn btn-dark" onClick={this.handleSubmit}>
-              GUESS
-            </button>
-            {this.state.phrase !== "" ? <p>
-                {this.state.phrase}, {this.state.proche}
-              </p> : null}
-            {this.state.icon !== "" ? <i class={this.state.icon} /> : null}
-          </div> : <div>
-            <button className="btn btn-warning" onClick={this.recommence}>
-              recommence
-            </button>
-          </div>}
-      </div>;
+            <hr />
+            {this.state.disabled !== true ? (
+              <div>
+                <p>Choisi une valeur entre 0 et {this.state.max}</p>
+                <form className="row" onSubmit={this.handleSubmit}>
+                  <input
+                    type="number"
+                    class="form-control game-display offset-5 col-2"
+                    placeholder="enter number"
+                    value={this.state.valeurEntree}
+                    onChange={this.changeValeur}
+                  />
+                <br />
+                <button
+                  type="submit"
+                  disabled={this.state.disabled}
+                  className="btn btn-dark"
+                >
+                  GUESS
+                </button>
+                </form>
+                {this.state.phrase !== "" ? (
+                  <p>
+                    {this.state.phrase}, {this.state.proche}
+                  </p>
+                ) : null}
+                {this.state.icon !== "" ? <i class={this.state.icon} /> : null}
+                <hr />
+              </div>
+            ) : (
+              <h3>Choisi un niveau</h3>
+            )}
+
+            {this.state.disabled !== true ? (
+              <div>
+                <Historique />
+              </div>
+            ) : null}
+          </div>
+        ) : (
+          <Recommence />
+        )}
+      </div>
+    );
   }
 }
 
 export default Jeu;
+
+// ajouter l'historique
+// ajouter un nombre d'essai par difficulté
+// bloquer le bouton proposition de chiffre si niveau pas choisi
+// faire une page de win
+// afficher le temps pour résoudre la solution au win
