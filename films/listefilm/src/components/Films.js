@@ -1,6 +1,8 @@
 import React, {
     Component
 } from 'react';
+import "./Films.css"
+
 
 class Films extends Component {
     constructor(props) {
@@ -54,20 +56,49 @@ class Films extends Component {
     }
     render() {
 
+
+
         return <div >
+
             <
-            div className = "container" >
-            <
-            h2 > Liste de Films < /h2> {
-        this.state.listeFilm.map(film =>
+            h2 > Liste de Films < /h2> 
+
+        {
+            /* < div class = "row" >
                 <
-                div class = "card" >
+                div class = "small-10 medium-11 columns" >
+                <
+                div class = "range-slider"
+            data-slider data-options = "display_selector: #sliderOutput3;" >
+                <
+                span class = "range-slider-handle"
+            role = "slider"
+            tabindex = "0" > < /span> <
+                span class = "range-slider-active-segment" > < /span> <
+                /div> <
+                /div> <
+                div class = "small-2 medium-1 columns" >
+                <
+                span id = "sliderOutput3" > < /span> <
+                /div> <
+                /div> */
+        }
+
+        <
+        div className = 'row' > {
+            this.state.listeFilm.map(film =>
+                <
+                div class = "card offset-1 col-2" >
                 <
                 img class = "card-img-top"
                 src = {
                     film.img
                 }
-                alt = "Card cap" / >
+                alt = {
+                    film.titre
+                }
+                height = "auto"
+                width = "33rem" / >
                 <
                 div class = "card-body" >
                 <
@@ -82,10 +113,12 @@ class Films extends Component {
 
 
 
-            } <
-            /div> <
-            /div>
-    }
-}
+            }
 
-export default Films;
+            <
+            /div> <
+            /div> 
+        }
+    }
+
+    export default Films;

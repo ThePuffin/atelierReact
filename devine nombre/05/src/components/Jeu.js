@@ -14,6 +14,7 @@ class Jeu extends Component {
       icon: "",
       valeurEntree: 0,
       max: 0,
+      historique:0,
       bouton: [
         { type: "btn btn-primary", value: 10, text: "easy" },
         { type: "btn btn-secondary", value: 100, text: "medium" },
@@ -45,6 +46,7 @@ class Jeu extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({historique : this.state.valeurEntree})
     let devine = this.state.nbrDevine;
     let propose = this.state.valeurEntree;
     let difference = Math.abs(propose - devine);

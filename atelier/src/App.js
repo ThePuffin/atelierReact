@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 import Display from "./Display";
 
@@ -8,11 +8,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to the ATELIER REACT</h1>
+          {/* <i class="fas fa-clock" style="color:white" /> */}
+          <h1 className="App-title">REACT CLOCKs</h1>
         </header>
         <Display />
-        
       </div>
     );
   }
