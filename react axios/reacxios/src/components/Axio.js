@@ -13,7 +13,7 @@ class Axio extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=20`).then(res => {
+    axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=200`).then(res => {
       const pokemons = res.data.results;
       this.setState({
         pokemons
@@ -28,24 +28,19 @@ class Axio extends Component {
 
   render() {
       let pokemonster = this.state.pokemons
-      console.log(pokemonster.length);
-      return <div >
-        <
-        form >
-        <
-        input type = "name"
-      placeholder = "recherche"
-      onChange = {
-        this.handleChange
-      }
-      /> < /
-      form > <
-        ul > {
-          pokemonster.length > 0 ? pokemonster.map(el => < li > {
-              el.name
-            } < /li>): console.log("pas de données")} < /
-            ul > <
-            /div>;
+      pokemonster.map(el => <li> {el.name} </li>);
+      let regex = new RegExp(`${this.state.search}`, "gi");
+      return <div>
+          <form>
+            <input type="name" placeholder="recherche" onChange={this.handleChange} />{" "}
+          </form> <ul>
+            {this.state.search === ""
+              ? pokemonster.map(el => <li> {el.name} </li>)
+              : pokemonster
+                  .filter(nom => regex.test(nom.name))
+                  .map(el => <li> {el.name} </li>)}
+          </ul>{" "}
+        </div>;
           }
         }
 
@@ -53,7 +48,9 @@ class Axio extends Component {
 
 
 
-
+// {
+//   this.state.search;
+// }
 
 
 
