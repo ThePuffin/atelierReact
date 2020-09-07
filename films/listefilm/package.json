@@ -6,8 +6,8 @@
     "bootstrap-slider": "^10.0.2",
     "rangeslider.js": "^2.3.2",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4"
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
