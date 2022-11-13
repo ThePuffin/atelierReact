@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^5.0.1",
     "react-toastify": "^4.1.0",
     "react-validation": "^3.0.7",
     "validator": "^10.3.0"
